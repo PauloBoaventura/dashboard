@@ -28,18 +28,23 @@ type Props = {
   children: ReactNode
 }
 
+// Initial auth state
+const initialAuth: Auth = {
+  user: null,
+  isAuthenticated: false,
+  isLoading: false
+}
+
 // Initial Auth Context
-export const AuthContext = createContext<AuthContextProps | null>(null)
+export const AuthContext = createContext<AuthContextProps>({
+  auth: initialAuth,
+  login: async () => {},
+  logout: async () => {},
+  register: async () => {}
+})
 
 // Auth Provider
 export const AuthProvider = (props: Props) => {
-  // Initial auth state
-  const initialAuth: Auth = {
-    user: null,
-    isAuthenticated: false,
-    isLoading: false
-  }
-
   const login = async (email: string, password: string) => {
     // Implement login logic here
     console.log('Login attempt:', { email, password })
